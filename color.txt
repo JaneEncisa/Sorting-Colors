@@ -1,0 +1,54 @@
+internal class ColorList
+{
+    public class SortedColors
+    {
+        public List<int> SortedColorsList = new List<int>();
+
+        public void DisplaySortedColors()
+        {
+            Console.WriteLine("Sorted Color List: " + String.Join(", ", SortedColorsList));
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        var sortedColors = new SortedColors();
+        HandleInput(sortedColors);
+        SortListColor(sortedColors);
+        sortedColors.DisplaySortedColors();
+    }
+
+    public static void HandleInput(SortedColors sortedColors)
+    {
+        Console.Write("Enter the length of the Color list:");
+        int colorLength = Convert.ToInt32(Console.ReadLine());
+        Console.WriteLine("Enter Random Color List (0 for red, 1 for white, 2 for blue):");
+
+        for (int i = 0; i < colorLength; i++)
+        {
+            sortedColors.SortedColorsList.Add(Convert.ToInt32(Console.ReadLine()));
+        }
+    }
+
+    static void SortListColor(SortedColors sortedColors)
+    {
+        int[] counts = new int[3];
+        foreach (var color in sortedColors.SortedColorsList)
+        {
+            counts[color]++;
+        }
+        sortedColors.SortedColorsList.Clear();
+        for (int i = 0; i < counts[2]; i++)
+        {
+            sortedColors.SortedColorsList.Add(2);
+        }
+        for (int i = 0; i < counts[0]; i++)
+        {
+            sortedColors.SortedColorsList.Add(0);
+        }
+        for (int i = 0; i < counts[1]; i++)
+        {
+            sortedColors.SortedColorsList.Add(1);
+        }
+    }
+}
